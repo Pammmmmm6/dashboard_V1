@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+  <div>
+  <h1>My Trades</h1>
+  <div>
+    {% include 'partials/messages.html' %} {% if trade.count %}
+
+    <div>
+      <input type="text" class="form-control" id="searchField" placeholder="Search">
+      <a href="{% url 'add-trade' %}">Add Trade</a>
+    </div>
+
+
+<div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Assets</th>
+         <th>Market</th>
+        <th>Action</th>
+        <th>Status</th>
+        <th>Type</th>
+        <th>Risk</th>
+        <th>Profit</th>
+        <th>Balance</th>
+        <th>Setup</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for trade in page_obj%}
+      <tr>
+        <td>{{trade.date}}</td>
+        <td>{{trade.assets}}</td>
+        <td>{{trade.category}}</td>
+        <td>{{trade.action}}</td>
+        <td>{{trade.status}}</td>
+          <td>{{trade.types}}</td>
+        <td>{{trade.risk}}</td>
+        <td>{{trade.profit}}</td>
+        <td>{{trade.balance}}</td>
+          <td>{% if trade.setup %}<a href="{{trade.setup}}">View</a>{% endif %}</td>
+
+        <td>
+          <a href="">Edit</a>
+        <a
+        href="{% url 'delete-trade' trade.id %}"
+        >Delete</a
+      >
+        </td>
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<p class="no-results" style="display: none;">No results </p>
+
+      Showing page {{page_obj.number}} of {{ page_obj.paginator.num_pages }}
+
+      {% if page_obj.has_previous %}
+
+        {% if page_obj.number == 1 %}
+
+        {% endif %}>
+          <a href="?page=1">&laquo; 1</a>
+          <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+          <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a>
+        {% endif %}
+
+        {% endif %}
+    {% include 'trade/add_trade.html' %}
+  </div>
+</div>
+
+{% endblock content %}

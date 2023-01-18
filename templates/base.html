@@ -1,0 +1,19 @@
+{% load tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bilbo</title>
+    {% tailwind_css %}
+</head>
+<body>
+ <form action="{% url  'logout' %}" method="POST">
+     {% csrf_token %}
+     <input type="submit" value="Sign out"/>
+ </form>
+
+</body>
+ {{user.username }}
+    {% block content %}
+    {% endblock %}
+</html>

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<a href="{% url 'trade' %}">Trades</a>
+
+<a>Add Trade</a>
+
+    <p>
+      <form action="{% url 'add-trade' %}" method="post">
+        {% include 'partials/messages.html'%}
+        {% csrf_token %}
+
+        <label for="">Date</label>
+          <input
+            type="date"
+            name="date"
+          />
+
+             <label for="">Market</label>
+          <select name="category">
+            <option value="NONE" selected="">None</option>
+            <option value="FOREX" selected="">Forex</option>
+              <option value="CRYPTO" selected="">Crypto</option>
+            <option value="OPTIONS" selected="">Options</option>
+              <option value="STOCK" selected="">Stock</option>
+              <option value="FUTURES" selected="">Futures</option>
+          </select>
+
+        <label for="">Assets</label>
+          <input
+            type="text"
+            placeholder="BTC/USDT"
+            name="assets"
+            value="{{values.assets}}"
+          />
+
+         <label for="">Action</label>
+          <select name="action">
+            <option value="LONG" selected="">Long</option>
+            <option value="SHORT" selected="">Short</option>
+          </select>
+
+         <label for="">Status</label>
+          <select name="status">
+            <option value="WIN" selected="">Win</option>
+            <option value="LOSE" selected="">Lose</option>
+          </select>
+
+        <label for="">Types</label>
+          <select name="types">
+            <option value="SCALPING" selected="">Scalping trade</option>
+            <option value="SWIN TRADE" selected="">Swing Day trade</option>
+          </select>
+
+          <label for="">Risk</label>
+          <input
+            type="text"
+            placeholder="5%"
+            name="risk"
+            value="{{values.risk}}"
+          />
+
+          <label for="">Profit</label>
+          <input
+            type="text"
+            name="profit"
+            placeholder="XXX.XX"
+            value="{{values.profit}}"
+          />
+
+            <label for="">Balance</label>
+          <input
+            type="text"
+            name="balance"
+            placeholder="XXXX.XX"
+            value="{{values.balance}}"
+          />
+
+          <label for="">Setup</label>
+          <input
+            type="text"
+            name="setup"
+            placeholder="https://www.tradingview.com/image"
+            value="{{values.setup}}"
+          />
+
+        <input type="submit" value="Submit"/>
+      </form>
+    </p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

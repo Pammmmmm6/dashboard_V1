@@ -1,0 +1,8 @@
+{% if messages %}{% load static %}
+
+    <div class=" text-sm mt-6 text-center text-m tracking-tight text-indigo-700">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
